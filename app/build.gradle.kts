@@ -39,6 +39,20 @@ android {
     }
 }
 
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            val baseName = "SimpleQrScanner"
+            val buildType = variant.buildType
+            val version = variant.minSdk.apiLevel // Or look up your version string
+
+            if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
+                output.outputFileName = "$baseName-$buildType-$version.apk"
+            }
+        }
+    }
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
