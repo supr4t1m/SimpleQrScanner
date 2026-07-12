@@ -46,7 +46,7 @@ class CameraXZxingAnalyzer(
             val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
 
             try {
-                val result = reader.decode(binaryBitmap)
+                val result = reader.decodeWithState(binaryBitmap)
                 onQrCodeScanned(result.text)
             } catch (e: NotFoundException) {
                 // No QR code found in this frame, move along silently
